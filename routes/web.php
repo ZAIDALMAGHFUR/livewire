@@ -8,3 +8,4 @@ Route::get('/', function () {
 
 
 Route::get('/counter', App\Livewire\Counter::class);
+Route::get('/action-plan', App\Livewire\ActionPlan::class)->name('action-plan');
