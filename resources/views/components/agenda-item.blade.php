@@ -8,8 +8,7 @@
         </span>
 
         <!-- Editable Text -->
-        {{--  <pre>{{ var_export($this->editedAgendaId, true) }}</pre>  --}}
-        @if (!empty($editedAgendaId) && $editedAgendaId === $id)
+        @if ($this->isEditing === true)
         <input type="text" wire:model.defer="editedText" class="form-control border-0"
                 wire:keydown.enter="saveEdit({{ $id }})" wire:blur="cancelEdit" autofocus>
         @else

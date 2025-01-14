@@ -50,6 +50,8 @@ trait ChekcAction
     public function deleteAgenda($id)
     {
         Agenda::find($id)?->delete();
+        session()->flash('message', 'Berhasil di Hapus.');
+        session()->flash('alert_type', 'success');
         $this->getMount();
     }
 
@@ -63,6 +65,12 @@ trait ChekcAction
             $this->editedText = $agenda->text;
         }
     }
+
+    public function cancelEdit()
+    {
+            $this->isEditing = false;
+    }
+
 
     public function saveEdit($id)
     {
