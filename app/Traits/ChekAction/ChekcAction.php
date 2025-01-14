@@ -6,10 +6,10 @@ use App\Models\Agenda;
 
 trait ChekcAction
 {
-
     protected $listeners = [
         'deleteAgenda' => 'deleteAgenda',
-    ];    
+    ];
+
     public function getMount()
     {
         $this->agendas = Agenda::where('completed', false)
@@ -56,17 +56,12 @@ trait ChekcAction
     public function startEditing($id)
     {
         $agenda = Agenda::find($id);
+        // dd($agenda);
         if ($agenda) {
             $this->isEditing = true;
             $this->editedAgendaId = $id;
             $this->editedText = $agenda->text;
-            $this->editedPriority = $agenda->priority;
         }
-    }
-
-    public function cancelEdit()
-    {
-        $this->reset(['isEditing', 'editedAgendaId', 'editedText', 'editedPriority']);
     }
 
     public function saveEdit($id)
@@ -75,9 +70,7 @@ trait ChekcAction
         if ($agenda) {
             $agenda->update([
                 'text' => $this->editedText,
-                'priority' => $this->editedPriority,
             ]);
-            $this->cancelEdit();
             $this->getMount();
         }
     }

@@ -9,9 +9,12 @@ class ActionPlan extends Component
 {
     use ChekcAction;
 
+    // Properti untuk data agenda
     public $agenda = '';
     public $priority = '';
     public $agendas = [];
+
+    // Properti untuk fitur edit
     public $isEditing = false;
     public $editedAgendaId;
     public $editedText = '';
@@ -33,6 +36,7 @@ class ActionPlan extends Component
 
     public function render()
     {
+        // dd($this->editedAgendaId, $this->isEditing); // Debug apakah properti ini tersedia
         return view('livewire.action-plan');
     }
 }

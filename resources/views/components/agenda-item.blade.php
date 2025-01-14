@@ -8,19 +8,16 @@
         </span>
 
         <!-- Editable Text -->
-        {{--  @if ($isEditing)
-            <input 
-                type="text" 
-                wire:model="editedText" 
-                class="form-control border-0"
-                wire:keydown.enter="saveEdit({{ $id }})"
-                wire:blur="cancelEdit"
-            >
-        @else  --}}
+        {{--  <pre>{{ var_export($this->editedAgendaId, true) }}</pre>  --}}
+        @if (!empty($editedAgendaId) && $editedAgendaId === $id)
+        <input type="text" wire:model.defer="editedText" class="form-control border-0"
+                wire:keydown.enter="saveEdit({{ $id }})" wire:blur="cancelEdit" autofocus>
+        @else
             <span wire:click="startEditing({{ $id }})" class="text-body" style="cursor: pointer;">
-                {{ $text }}
+                {{ $text ?? '' }}
             </span>
-        {{--  @endif  --}}
+        @endif
+
     </div>
 
     <div class="d-flex align-items-center">

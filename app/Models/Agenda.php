@@ -9,5 +9,10 @@ class Agenda extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['text', 'priority', 'completed'];
+    protected $table = 'agendas';
+    protected $fillable = [
+        'text',
+        'priority',
+        'completed'
+    ];
 }
